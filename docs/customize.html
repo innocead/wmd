@@ -11,7 +11,6 @@
 	<link type="text/css" rel="stylesheet" href="docs.css"/>
 	<link type="text/css" rel="stylesheet" href="wmd.css"/>
 	<style type="text/css">
-	.wmd-input { width:25em; }
 	.wmd-alert { background: #FFF url(wmd-alert.png) no-repeat; }
 	.wmd-alert-down { background-position: 0 bottom; }
 	</style>
@@ -38,7 +37,7 @@
 			};
 			
 			new WMD("alert-input", "alert-toolbar", {
-				commands: "strong em spacer a blockquote code img spacer ol ul h hr spacer alert",
+				commands: "strong em spacer alert",
 				commandTable: { "alert": { text: "Alert", title: "Alert the current selection Ctl+T", css: "wmd-alert", shortcut: "t" } }
 			});
 		};
@@ -203,7 +202,7 @@
 					Now we can construct our WMD instance with our custom command definition:
 					</p>
 					<pre class="brush:js;">new WMD("input", "toolbar", {
-    commands: "strong em spacer a blockquote code img spacer ol ul h hr spacer alert",
+    commands: "strong em spacer alert",
     commandTable: {
 	    "alert": {
 		    text: "Alert",
