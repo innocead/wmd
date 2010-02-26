@@ -21,9 +21,9 @@ Chunk = function(text, selectionStartIndex, selectionEndIndex, selectionScrollTo
 		addBlankLines: function(numberBefore, numberAfter, findExtra) {
 			var regexText,
 				replacementText;
-
-			numberBefore = (numberBefore === null || numberBefore === undefined) ? 1 : numberBefore;
-			numberAfter = (numberAfter === null || numberAfter === undefined) ? 1 : numberAfter;
+				
+			numberBefore = (typeof numberBefore === "undefined" || numberBefore === null) ? 1 : numberBefore;
+			numberAfter = (typeof numberAfter === "undefined" || numberAfter === null) ? 1 : numberAfter;
 
 			numberBefore = numberBefore + 1;
 			numberAfter = numberAfter + 1;
