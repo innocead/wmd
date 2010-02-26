@@ -34,7 +34,7 @@ Field = function(label, type, options) {
 		events = [],
 		setFor = false;
 	
-	if (Field.TYPES.indexOf(type) < 0) {
+	if (indexOf(Field.TYPES, type) < 0) {
 		throw('"' + type + '" is not a valid field type.');
 	}
 	

@@ -20,8 +20,6 @@ var WMD,
 // Constructor. Creates a new WMD instance.
 //
 WMD = function(input, toolbar, options) {
-	input = document.getElementById(input);
-	toolbar = toolbar ? document.getElementById(toolbar) : null;
 	options = extend({
 		preview: null,
 		previewEvery: .5,
@@ -30,6 +28,14 @@ WMD = function(input, toolbar, options) {
 		commands: "strong em spacer a blockquote code img spacer ol ul h hr",
 		commandTable: {}
 	}, options);
+	
+	if (typeof input === "string") {
+		input = document.getElementById(input);
+	}
+	
+	if (typeof toolbar === "string") {
+		toolbar = document.getElementById(toolbar);
+	}
 	
 	var obj = {},
 		shortcuts = {},
@@ -283,6 +289,27 @@ function getViewportDimensions() {
 	return {width:documentElement.clientWidth, height:documentElement.clientHeight};
 }
 
+// Gets the index of the given element in the given array.
+function indexOf(array, item) {
+	var i, n;
+	
+	if (array) {
+		if (typeof array.indexOf !== "undefined") {
+			return array.indexOf(item);
+		}
+		
+		if (typeof array.length !== "undefined") {
+			for(i = 0, n = array.length; i < n; i++) {
+				if (array[i] === item) {
+					return i;
+				}
+			}
+		}
+	}
+	
+	return -1;
+}
+
 // Generates a random string.
 function randomString(length, options) {
 	options = extend({
@@ -366,7 +393,7 @@ function removeEvent(element, event, callback, cache) {
 	}
 	
 	if (cached) {
-		cache.splice(cache.indexOf(cached), 1);
+		cache.splice(indexOf(cache, cached), 1);
 	}
 }
 
