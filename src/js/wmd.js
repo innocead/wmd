@@ -127,13 +127,14 @@ WMD = function(input, toolbar, options) {
 		addEvent(input, "keyup", function(event) {
 			var ev = event || window.event,
 				keyCode = ev.keyCode || ev.which,
+				meta = ev.shiftKey || ev.ctrlKey || ev.metaKey,
 				state,
 				chunk;
-				
-			if (!ev.shiftKey && !ev.ctrlKey && !ev.metaKey && keyCode === 13) {
+			
+			if (!meta && keyCode === 13) {
 				state = new InputState(obj);
 				chunk = state.getChunk();
-				
+
 				Command.autoIndent(obj, chunk, function() {
 					state.setChunk(chunk);
 					state.restore();
@@ -256,8 +257,8 @@ function extendRegExp(regex, pre, post) {
 	// Technically, this can match incorrect flags like "gmm".
 	result = pattern.match(/\/([gim]*)$/);
 	
-	if (result === null) {
-		flags = result[0];
+	if (result) {
+		flags = result[1];
 	} else {
 		flags = "";
 	}

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title>WMD Test Page</title>
+	<link type="text/css" rel="stylesheet" href="css/wmd.css"/>
+	<script type="text/javascript" src="js/wmd.js"></script>
+	<script type="text/javascript" src="js/chunk.js"></script>
+	<script type="text/javascript" src="js/inputstate.js"></script>
+	<script type="text/javascript" src="js/command.js"></script>
+	<script type="text/javascript" src="js/dialog.js"></script>
+	<script type="text/javascript" src="js/form.js"></script>
+	<script type="text/javascript" src="js/field.js"></script>
+	<script type="text/javascript" src="js/linkhelper.js"></script>
+	<style type="text/css">
+		.wmd-command { background-image: url(img/wmd-toolbar.png); }
+		.wmd-input { width: 100%; height: 400px; }
+	</style>
+	<script type="text/javascript">
+		var wmd;
+		window.onload = function() {
+			wmd = new WMD("wmd-input", "wmd-toolbar", {preview: "wmd-preview"});
+		};
+	</script>
+</head>
+<body>
+	<h1>WMD Test Page</h1>
+	
+	<div id="wmd-toolbar" class="wmd-toolbar"></div>
+	<textarea id="wmd-input" class="wmd-input" rows="8" cols="40"></textarea>
+</body>

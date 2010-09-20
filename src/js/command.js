@@ -227,7 +227,7 @@ extend(Command, {
 			prefix,
 			nLinesAfter,
 			spaces;
-			
+
 		callback = typeof callback === "function" ? callback : function() { };
 
 		// Get the item prefix - e.g. " 1. " for a numbered list, " - " for a bulleted list.

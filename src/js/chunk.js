@@ -20,7 +20,8 @@ Chunk = function(text, selectionStartIndex, selectionEndIndex, selectionScrollTo
 		// Adds blank lines to this chunk.
 		addBlankLines: function(numberBefore, numberAfter, findExtra) {
 			var regexText,
-				replacementText;
+				replacementText,
+				match;
 				
 			numberBefore = (typeof numberBefore === "undefined" || numberBefore === null) ? 1 : numberBefore;
 			numberAfter = (typeof numberAfter === "undefined" || numberAfter === null) ? 1 : numberAfter;
@@ -28,14 +29,20 @@ Chunk = function(text, selectionStartIndex, selectionEndIndex, selectionScrollTo
 			numberBefore = numberBefore + 1;
 			numberAfter = numberAfter + 1;
 
+			// New bug discovered in Chrome, which appears to be related to use of RegExp.$1
+			// Hack it to hold the match results. Sucks because we're double matching...
+			match = /(^\n*)/.exec(this.selection);
 			this.selection = this.selection.replace(/(^\n*)/, "");
-			this.startTag = this.startTag + RegExp.$1;
+			this.startTag = this.startTag + (match ? match[1] : "");
+			match = /(\n*$)/.exec(this.selection);
 			this.selection = this.selection.replace(/(\n*$)/, "");
-			this.endTag = this.endTag + RegExp.$1;
+			this.endTag = this.endTag + (match ? match[1] : "");
+			match = /(^\n*)/.exec(this.startTag);
 			this.startTag = this.startTag.replace(/(^\n*)/, "");
-			this.before = this.before + RegExp.$1;
+			this.before = this.before + (match ? match[1] : "");
+			match = /(\n*$)/.exec(this.endTag);
 			this.endTag = this.endTag.replace(/(\n*$)/, "");
-			this.after = this.after + RegExp.$1;
+			this.after = this.after + (match ? match[1] : "");
 
 			if (this.before) {
 				regexText = replacementText = "";

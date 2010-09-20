@@ -1,2 +1,5 @@
 *.DS_STORE
 *.tmproj
+_config.yml
+build/
+src/_site
