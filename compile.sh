@@ -1,6 +1,6 @@
 #!/bin/bash
 LIB_DIR="lib"
-TARGETS=( "build" "doc" )
+TARGETS=( "build" "docs" )
 TARGET_COUNT=${#TARGETS[@]}
 JS_SOURCE_DIR="src/js"
 JS_SOURCE_FILES=( "wmd.js" "chunk.js" "inputstate.js" "command.js" "dialog.js" "form.js" "field.js" "linkhelper.js" )
@@ -12,6 +12,7 @@ IMG_SOURCE_DIR="src/img"
 IMG_SOURCE_SEARCH="*.png"
 
 echo Compressing JavaScript to ${TARGETS[0]}/wmd.js:
+mkdir ${TARGETS[0]}
 touch ${TARGETS[0]}/wmd.js
 
 if [ "$1" == "--showdown" ] || [ "$2" == "--showdown" ]
@@ -55,6 +56,7 @@ echo "})();" >> ${TARGETS[0]}/wmd.js
 echo
 
 for (( i=1;i<$TARGET_COUNT;i++ )); do
+	mkdir ${TARGETS[${i}]}
 	echo Copying to target ${TARGETS[${i}]}/wmd.js
 	cat ${TARGETS[0]}/wmd.js > ${TARGETS[${i}]}/wmd.js
 done
