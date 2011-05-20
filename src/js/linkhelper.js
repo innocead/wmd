@@ -83,7 +83,7 @@ LinkHelper = {
 		urlField = new Field(fieldLabel, "text", {
 			required: true,
 			value: "http://",
-			insertion: '<span class="note">To add a tool-tip, place it in quotes after the URL (e.g., <strong>http://google.com "Google"</strong>)</span>'
+			insertion: Translator.urlFieldInsertion
 		});
 		
 		form.insertField(0, "url", urlField);

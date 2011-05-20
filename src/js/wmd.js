@@ -8,6 +8,7 @@ var WMD,
 	Form,
 	Field,
 	LinkHelper,
+        Translator,
 	documentElement,
 	eventCache = [],
 	browser = {
@@ -26,9 +27,12 @@ WMD = function(input, toolbar, options) {
 		showdown: null,
 		lineLength: 40,
 		commands: "strong em spacer a blockquote code img spacer ol ul h hr",
-		commandTable: {}
+		commandTable: {},
+                lang: "EN"
 	}, options);
-	
+        
+        chooseTranslator(options.lang);
+
 	if (typeof input === "string") {
 		input = document.getElementById(input);
 	}

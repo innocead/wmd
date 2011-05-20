@@ -152,13 +152,13 @@ extend(Command, {
 				onDestroy: onDestroy
 			}),
 			submitField = new Field("", "submit", {
-				value: "Submit"
+				value: Translator.submit
 			});
 		
 		form.addField("submit", submitField);
 		
 		cancel.href = "javascript:void(0);";
-		cancel.innerHTML = "cancel";
+		cancel.innerHTML = Translator.cancel;
 		cancel.onclick = function() { form.destroy(); };
 		
 		submitField.insert("&nbsp;or&nbsp;");
@@ -185,9 +185,9 @@ extend(Command, {
 				
 				if (!chunk.selection) {
 					if (args.tag === "img") {
-						chunk.selection = "alt text";
+						chunk.selection = Translator.imageAlt;
 					} else {
-						chunk.selection = "link text";
+						chunk.selection = Translator.linkText;
 					}
 				}
 			}
@@ -298,7 +298,7 @@ extend(Command, {
 				});
 
 			if(!chunk.selection) {
-				chunk.selection = args.preventDefaultText ? " " : "List item";
+				chunk.selection = args.preventDefaultText ? " " : Translator.listItem;
 			}
 			
 			prefix = getItemPrefix();
@@ -375,7 +375,7 @@ extend(Command, {
 			Command.runLinkImage(wmd, chunk, callback, extend({
 				tag: "a",
 				prompt: function(onComplete) {
-					LinkHelper.createDialog("Insert link", "Link URL", onComplete);
+					LinkHelper.createDialog(Translator.insertLink, Translator.linkURL, onComplete);
 				}
 			}, args));
 		},
@@ -397,7 +397,7 @@ extend(Command, {
 			});
 			
 			chunk.selection = chunk.selection.replace(/^(\s|>)+$/ ,"");
-			chunk.selection = chunk.selection || (args.preventDefaultText ? "" : "Blockquote");
+			chunk.selection = chunk.selection || (args.preventDefaultText ? "" : Translator.blockquote);
 			
 			if (chunk.before) {
 				chunk.before = chunk.before.replace(/\n?$/,"\n");
@@ -487,7 +487,7 @@ extend(Command, {
 				
 				if (!chunk.selection) {
 					chunk.startTag = "    ";
-					chunk.selection = args.preventDefaultText ? "" : "enter code here";
+					chunk.selection = args.preventDefaultText ? "" : Translator.enterCodeHere;
 				} else {
 					if (/^[ ]{0,3}\S/m.test(chunk.selection)) {
 						chunk.selection = chunk.selection.replace(/^/gm, "    ");
@@ -503,7 +503,7 @@ extend(Command, {
 					chunk.startTag = chunk.endTag = "`";
 					
 					if (!chunk.selection) {
-						chunk.selection = args.preventDefaultText ? "" : "enter code here";
+						chunk.selection = args.preventDefaultText ? "" : Translator.enterCodeHere;
 					}
 				} else if (chunk.endTag && !chunk.startTag) {
 					chunk.before = chunk.before + chunk.endTag;
@@ -610,7 +610,7 @@ extend(Command, {
 			Command.runLinkImage(wmd, chunk, callback, extend({
 				tag: "img",
 				prompt: function(onComplete) {
-					LinkHelper.createDialog("Insert image", "Image URL", onComplete);
+					LinkHelper.createDialog(Translator.insertImage, Translator.imageURL, onComplete);
 				}
 			}, args));
 		},
@@ -641,15 +641,15 @@ extend(Command, {
 
 // Built-in command lookup table.
 Command.builtIn = {
-	"strong": {text:"Bold", title:"Strong <strong> Ctl+B", css:"wmd-strong", shortcut:"b"},
-	"em": {text:"Italic", title:"Emphasis <em> Ctl+I", css:"wmd-em", shortcut:"i"},
-	"a": {text:"Link", title:"Hyperlink <a> Ctl+L", css:"wmd-a", shortcut:"l"},
-	"blockquote": {text:"Blockquote", title:"Blockquote <blockquote> Ctl+Q", css:"wmd-blockquote", shortcut:"q"},
-	"code": {text:"Code", title:"Code Sample <pre><code> Ctl+K", css:"wmd-code", shortcut:"k"},
-	"img": {text:"Image", title:"Image <img> Ctl+G", css:"wmd-img", shortcut:"g"},
-	"ol": {text:"Numbered List", title:"Numbered List <ol> Ctl+O", css:"wmd-ol", shortcut:"o"},
-	"ul": {text:"Bulleted List", title:"Bulleted List <ul> Ctl+U", css:"wmd-ul", shortcut:"u"},
-	"h": {text:"Headeing", title:"Heading <h1>/<h2> Ctl+H", css:"wmd-h", shortcut:"h"},
-	"hr": {text:"Horizontal Rule", title:"Horizontal Rule <hr> Ctl+R", css:"wmd-hr", shortcut:"r"},
+	"strong": {text:Translator.strongText, title:Translator.strongTitle, css:"wmd-strong", shortcut:"b"},
+	"em": {text:Translator.emText, title:Translator.emTitle, css:"wmd-em", shortcut:"i"},
+	"a": {text:Translator.aText, title:Translator.aTitle, css:"wmd-a", shortcut:"l"},
+	"blockquote": {text:Translator.blockquoteText, title:Translator.blockquoteTitle, css:"wmd-blockquote", shortcut:"q"},
+	"code": {text:Translator.codeText, title:Translator.codeTitle, css:"wmd-code", shortcut:"k"},
+	"img": {text:Translator.imgText, title:Translator.imgTitle, css:"wmd-img", shortcut:"g"},
+	"ol": {text:Translator.olText, title:Translator.olTitle, css:"wmd-ol", shortcut:"o"},
+	"ul": {text:Translator.ulText, title:Translator.ulTitle, css:"wmd-ul", shortcut:"u"},
+	"h": {text:Translator.hText, title:Translator.hTitle, css:"wmd-h", shortcut:"h"},
+	"hr": {text:Translator.hrText, title:Translator.hrTitle, css:"wmd-hr", shortcut:"r"},
 	"spacer": {css:"wmd-spacer", builder:Command.createSpacer}
 };
