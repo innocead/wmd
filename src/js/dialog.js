@@ -37,8 +37,10 @@ Dialog = function(options) {
 			element.className = options.css;
 			element.style.position = "absolute";
 			element.style.zIndex = options.zIndex;
-			element.style.top = (window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop) + "px";
-			
+			element.style.top = ((window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop)
+                            +((window.innerHeight || document.documentElement.clientHeight || document.body.clientHeight)/2)) 
+                            - 150
+                            + "px";
 			if (options.insertion) {
 				obj.fill(options.insertion);
 			}

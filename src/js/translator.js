@@ -46,7 +46,7 @@ Translator_RU = {
     strongTitle: "Жирный <strong> Ctl+B",
     emTitle: "Курсив <em> Ctl+I",
     aTitle: "Вставить ссылку <a> Ctl+L",
-    blockquoteTitle: "Ыитировать <blockquote> Ctl+Q",
+    blockquoteTitle: "Цитировать <blockquote> Ctl+Q",
     codeTitle: "Вставить пример кода <pre><code> Ctl+K",
     imgTitle: "Вставить картинку <img> Ctl+G",
     olTitle: "Нумерованный список <ol> Ctl+O",
