@@ -37,6 +37,45 @@ Translator_EN = {
     cancel: "Cancel"
 };
 
+Translator_FR = {
+    urlFieldInsertion: "<span class=\"note\">Pour ajouter une infobulle, indiquez son contenu entre guillemets après l'URL (e.g., <strong>http://google.com \"Google\"</strong>)</span>",
+    linkText: "Texte du lien",
+    imageAlt: "Texte alternatif de l'image",
+    listItem: "Elément de la liste",
+    
+    strongTitle: "Gras <strong> Ctl+B",
+    emTitle: "Italique <em> Ctl+I",
+    aTitle: "Lien externe <a> Ctl+L",
+    blockquoteTitle: "Citation <blockquote> Ctl+Q",
+    codeTitle: "Exemple de code <pre><code> Ctl+K",
+    imgTitle: "Image <img> Ctl+G",
+    olTitle: "Liste numérotée <ol> Ctl+O",
+    ulTitle: "Liste à puces <ul> Ctl+U", 
+    hTitle: "Titre <h1>/<h2> Ctl+H",
+    hrTitle: "Séparateur horizontal <hr> Ctl+R",
+    
+    strongText: "Gras",
+    emText: "Italique",
+    aText: "Lien",
+    blockquoteText: "Citation",
+    codeText: "Code",
+    imgText: "Image",
+    olText: "Liste Numérotée",
+    ulText: "Liste à Puces",
+    hText: "Titre",
+    hrText: "Séparateur",   
+    
+    insertImage: "Insérer une image",
+    imageURL: "URL de l'image",
+    enterCodeHere: "Saisir du code ici",
+    blockquote: "Citation",
+    insertLink: "Insérer un lien",
+    linkURL: "URL du lien",
+    
+    submit: "Valider",
+    cancel: "Annuler"
+};
+
 Translator_RU = {
     urlFieldInsertion: "<span class=\"note\">(например, <strong>http://google.com</strong>)</span>",
     linkText: "название ссылки",
@@ -80,10 +119,13 @@ Translator = Translator_EN;
 
 function chooseTranslator(lang)
 {
-    if(lang == "RU")
+    if(lang == "RU") {
         Translator = Translator_RU;
-    else
+	} else if (lang == "FR") {
+		Translator = Translator_FR;
+	} else {
         Translator = Translator_EN;
+	}
     
     //small hack
     Command.builtIn = {
